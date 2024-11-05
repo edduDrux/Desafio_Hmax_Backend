@@ -8,7 +8,6 @@ Este é um projeto de API para gerenciamento de uma loja, implementado com [Nest
 - **Controle de Acesso**: Uso de roles para restringir endpoints apenas para gerentes.
 - **CRUD de Produtos**: Operações de criação, leitura, atualização e exclusão de produtos.
 - **Paginação e Busca**: Listagem de produtos com suporte a paginação e filtro por termo de busca.
-- **Documentação com Swagger**: Documentação interativa da API acessível em `/api`.
 
 ## Tecnologias Utilizadas
 
@@ -16,26 +15,39 @@ Este é um projeto de API para gerenciamento de uma loja, implementado com [Nest
 - **Prisma ORM**: ORM usado para acessar e gerenciar o banco de dados MongoDB.
 - **MongoDB**: Banco de dados NoSQL utilizado para armazenamento de dados.
 - **JWT**: JSON Web Token para autenticação segura.
-- **Swagger**: Documentação interativa e auto-gerada da API.
 
 ## Estrutura dos Endpoints
 
 ### Autenticação
 
-- `POST /auth/login`: Faz o login do usuário e retorna um token JWT.
+- `POST /auth/login` - Autenticar gerente ou cliente (login).
+- `POST /auth/register/gerente` - Registrar um novo gerente.
+- `POST /auth/register/cliente` - Registrar um novo cliente.
 
-### Usuários
+### Clientes
 
-- `POST /users/register/client`: Registra um novo cliente.
-- `POST /users/register/gerente`: Registra um novo gerente.
+- `GET /cliente` - Listar todos os clientes.
+- `GET /cliente/:id` - Obter um cliente específico pelo ID.
+- `POST /cliente` - Criar um novo cliente.
+- `PUT /cliente/:id` - Atualizar um cliente específico pelo ID.
+- `DELETE /cliente/:id` - Excluir um cliente específico pelo ID.
+
+### Gerentes
+
+- `GET /gerente` - Listar todos os gerentes.
+- `GET /gerente/:id` - Obter um gerente específico pelo ID.
+- `POST /gerente` - Criar um novo gerente.
+- `PUT /gerente/:id` - Atualizar um gerente específico pelo ID.
+- `DELETE /gerente/:id` - Excluir um gerente específico pelo ID.
 
 ### Produtos
 
-- `POST /products`: Cria um novo produto (somente `GERENTE`).
-- `GET /products`: Lista todos os produtos com paginação e filtro de busca.
-- `GET /products/:id`: Retorna um produto específico pelo ID.
-- `PATCH /products/:id`: Atualiza um produto existente (somente `GERENTE`).
-- `DELETE /products/:id`: Remove um produto pelo ID (somente `GERENTE`).
+- `GET /produto` - Listar todos os produtos.
+- `GET /produto/:id` - Obter um produto específico pelo ID.
+- `POST /produto` - Criar um novo produto. (somente `GERENTE`).
+- `PUT /produto/:id` - Atualizar um produto específico pelo ID. (somente `GERENTE`).
+- `DELETE /produto/:id` - Excluir um produto específico pelo ID. (somente `GERENTE`).
+
 
 ## Melhoria e Manutenção
 
