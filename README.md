@@ -1,71 +1,3 @@
-# Loja API
-
-Este é um projeto de API para gerenciamento de uma loja, implementado com [NestJS](https://nestjs.com/), [Prisma ORM](https://www.prisma.io/) e [MongoDB](https://www.mongodb.com/). A API permite que um gerente adicione, edite e remova produtos, enquanto clientes podem visualizar o catálogo. O sistema também possui autenticação JWT com controle de acesso baseado em roles (`GERENTE` e `CLIENTE`).
-
-## Funcionalidades
-
-- **Autenticação JWT**: Login de usuários com geração de token JWT.
-- **Controle de Acesso**: Uso de roles para restringir endpoints apenas para gerentes.
-- **CRUD de Produtos**: Operações de criação, leitura, atualização e exclusão de produtos.
-- **Paginação e Busca**: Listagem de produtos com suporte a paginação e filtro por termo de busca.
-- **Documentação com Swagger**: Documentação interativa da API acessível em `/api`.
-
-## Tecnologias Utilizadas
-
-- **NestJS**: Framework para desenvolvimento de aplicações Node.js escaláveis.
-- **Prisma ORM**: ORM usado para acessar e gerenciar o banco de dados MongoDB.
-- **MongoDB**: Banco de dados NoSQL utilizado para armazenamento de dados.
-- **JWT**: JSON Web Token para autenticação segura.
-- **Swagger**: Documentação interativa e auto-gerada da API.
-
-## Estrutura dos Endpoints
-
-### Autenticação
-
-- `POST /auth/login`: Faz o login do usuário e retorna um token JWT.
-
-### Usuários
-
-- `POST /users/register/client`: Registra um novo cliente.
-- `POST /users/register/gerente`: Registra um novo gerente.
-
-### Produtos
-
-- `POST /products`: Cria um novo produto (somente `GERENTE`).
-- `GET /products`: Lista todos os produtos com paginação e filtro de busca.
-- `GET /products/:id`: Retorna um produto específico pelo ID.
-- `PATCH /products/:id`: Atualiza um produto existente (somente `GERENTE`).
-- `DELETE /products/:id`: Remove um produto pelo ID (somente `GERENTE`).
-
-## Melhoria e Manutenção
-
-Embora a API esteja funcional, algumas melhorias e ajustes podem ser feitos para torná-la mais robusta e eficiente:
-
-### 1. Validação e Segurança
-
-- **Validação de Dados**: Adicionar validações mais detalhadas com `class-validator` para garantir que dados inválidos sejam bloqueados antes de serem persistidos.
-- **Hashing de Senha**: Garantir que o hashing de senha esteja adequado ao padrão de segurança, como o uso de `bcrypt` com um `salt` adequado.
-
-### 2. Testes Automatizados
-
-- **Cobertura de Testes**: Aumentar a cobertura de testes unitários com `Jest` para todos os serviços e controllers. Incluir testes de integração para validar o funcionamento da API de ponta a ponta.
-- **Testes para Autenticação**: Testar o comportamento de endpoints protegidos para verificar a autorização baseada em roles (`CLIENTE` vs `GERENTE`).
-
-### 3. Otimização de Performance
-
-- **Indexação no MongoDB**: Adicionar índices nos campos frequentemente usados em buscas e filtros, como `descricao` dos produtos.
-- **Paginação Eficiente**: Avaliar o uso de paginação baseada em cursores no MongoDB para melhorar a performance de listagem com muitos registros.
-
-### 4. Melhorias na Documentação e Swagger
-
-- **Documentação de Erros**: Adicionar respostas de erro no Swagger para documentar os possíveis erros, como `401 Unauthorized` e `403 Forbidden`.
-- **Exemplos Detalhados**: Incluir exemplos detalhados de requisições e respostas no Swagger para ajudar na integração com o frontend.
-
-### 5. Recursos Adicionais
-
-- **Sistema de Logs**: Implementar logs detalhados para monitorar e diagnosticar problemas em produção.
-- **Controle de Acesso Avançado**: Introduzir um sistema mais flexível de permissões que permita a criação de diferentes tipos de usuários e permissões específicas.
-
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
@@ -165,4 +97,3 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
-
